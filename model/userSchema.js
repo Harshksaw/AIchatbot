@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
+const JWT = require("jsonwebtoken");
 
 const userSchema = new Schema(
   {
@@ -31,6 +32,15 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+userSchema.methods = {
+  jwtToken() {
+    return JWT.sign(
+        {id: this._id , email : this.email},
+        process.env.SECRET,
+        {expiresIn:'24h'}
+    )
+  },
+};
 
 const userModel = mongoose.model("user", userSchema); //mongoose.model -. db collection -> user , will come in formal -> userSchema
 

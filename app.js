@@ -2,11 +2,16 @@ const express = require('express');
 const app = express();
 const authRoute = require('./router/authRoute');
 const databaseconnect = require('./config/databaseConnect');
+const cookieParser = require('cookie-parser');
 
 databaseconnect();
 
 app.use(express.json());
-app.use('/api/auth/', authRoute);
+app.use(cookieParser());   //Parse before going to any route
+
+
+app.use('/api/auth/',  authRoute);
+
 
 
 app.use('/', (req, res)=>{

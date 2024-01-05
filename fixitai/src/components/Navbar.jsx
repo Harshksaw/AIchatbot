@@ -3,12 +3,28 @@ const img1 = "https://www.fix-it.ai/_next/static/media/fixit_white_bg.3734d2d4.s
 
 
 import { useAuth0 } from "@auth0/auth0-react";
-
+import {useDispatch} from 'react-redux';
+import { login } from '../redux//slices/authSlice.js';
+import { useEffect } from "react";
 
 
 
 function Navbar() {
     const { user ,  isAuthenticated ,loginWithRedirect , logout} = useAuth0();
+    const dispatch = useDispatch();
+
+    const handleLoginSuccess = (user) => {
+
+        dispatch(login(user));
+      };
+    
+      useEffect(() => {
+
+        if (user && isAuthenticated) {
+          handleLoginSuccess(user);
+        }
+      }, [user, isAuthenticated , handleLoginSuccess]);
+    
 
 
     return (

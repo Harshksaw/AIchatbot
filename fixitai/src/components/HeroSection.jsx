@@ -1,5 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import "../index.css"
+import LowerHero from './LowerHero';
+
+import { useSelector } from 'react-redux';
+import LoginPrompt from './Prompt';
+import LoginPromptPage from './Prompt';
 
 
 
@@ -34,6 +39,11 @@ function HeroSection() {
 
     return () => clearInterval(interval1);
   });
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuthenticated)
+
+
+  
 
   function startSecondAnimation() {
     const textSpans = textRef2.current.querySelectorAll('h3');
@@ -64,6 +74,10 @@ function HeroSection() {
 
 
   return (
+
+    <div className='bg-[#212520] flex flex-col items-center min-h-screen overflow-y-auto'> {/* Add min-h-screen for full height */}
+    {/* ... existing HeroSection content */}
+
     <div className='bg-[#212520] flex flex-col margin-auto  justify-center items-center  h-screen w-full '>
       <div >
 
@@ -99,19 +113,7 @@ function HeroSection() {
 
           }}
         >
-          {/* {words2.map((word, index) => (
-            <h3 key={index} >
-              {word.split('').map((letter, letterIndex) => (
 
-                <span className='text-gray-700' key={letterIndex}>{letter}
-
-
-                </span>
-
-              ))}
-
-            </h3>
-          ))} */}
 
           {words2.map((word, index) => (
             <React.Fragment key={index}>
@@ -141,12 +143,22 @@ function HeroSection() {
     </button>
       </div>
 
+                  
 
 
 
 
 
     </div>
+
+    {isAuthenticated ? (
+      <LowerHero />) : 
+      (
+          <LoginPromptPage/>
+      )
+    }
+  </div>
+    
   );
 }
 

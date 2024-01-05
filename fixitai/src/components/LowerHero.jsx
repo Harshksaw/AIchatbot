@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const FadingText = () => {
+const LowerHero = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const FadingText = () => {
       containerRef.current.style.opacity = opacity;
     };
 
-    // Attach the scroll event listener
+
     window.addEventListener('scroll', handleScroll);
 
     // Clean up the event listener on component unmount
@@ -46,4 +46,4 @@ const FadingText = () => {
   );
 };
 
-export default FadingText;
+export default LowerHero;

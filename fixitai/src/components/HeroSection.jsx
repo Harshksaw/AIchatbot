@@ -5,6 +5,7 @@ import LowerHero from './LowerHero';
 import { useSelector } from 'react-redux';
 import LoginPrompt from './Prompt';
 import LoginPromptPage from './Prompt';
+import { Link } from 'react-router-dom';
 
 
 
@@ -130,17 +131,36 @@ function HeroSection() {
       </div>
       
       <div className='mt-10 pt-5'>
+        {
+          !isAuthenticated ? (
+            <button
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="radix-:r0:"
+            data-state="closed"
+            className="text-xl md:text-2xl lg:text-xl tracking-wide font-semibold text-[#e46e26] hover:text-[#EDC0C0] duration-500 transition-colors"
+          >
+            Join the waitlist &nbsp;&nbsp;&gt;
+          </button>
 
-      <button
-      type="button"
-      aria-haspopup="dialog"
-      aria-expanded="false"
-      aria-controls="radix-:r0:"
-      data-state="closed"
-      className="text-xl md:text-2xl lg:text-xl tracking-wide font-semibold text-[#e46e26] hover:text-[#EDC0C0] duration-500 transition-colors"
-    >
-      Join the waitlist &nbsp;&nbsp;&gt;
-    </button>
+          ):(
+            <Link to="/salesgpt">
+            <h3
+            
+            
+            
+
+
+            className="text-xl md:text-2xl lg:text-xl tracking-wide font-semibold text-[#e46e26] hover:text-[#EDC0C0] duration-500 transition-colors"
+          >
+            See it in Action &nbsp;&nbsp;&gt;
+          </h3>
+          </Link>
+          )
+        }
+
+     
       </div>
 
                   

@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import Salesgpt from './pages/salesgpt';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <div className="overflow-y-auto"> {/* Scrollable content wrapper */}
           <Routes>
             <Route path="/" element={<HeroSection />} />
-            {/* <Route path="/" element={<LowerHero />} /> */}
+            <Route path="/salesgpt" element={<Salesgpt />} />
           </Routes>
         </div>
       </div>

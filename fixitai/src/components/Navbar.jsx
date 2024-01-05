@@ -2,11 +2,14 @@
 const img1 = "https://www.fix-it.ai/_next/static/media/fixit_white_bg.3734d2d4.svg"
 
 
+import { useAuth0 } from "@auth0/auth0-react";
 
 
-import { GoogleLogin } from '@react-oauth/google';
+
 
 function Navbar() {
+    const { user ,  isAuthenticated ,loginWithRedirect , logout} = useAuth0();
+
 
     return (
         <nav className="flex justify-between  items-center w-full h-20 text-white bg-[#212520]  fixed z-10">
@@ -37,22 +40,39 @@ function Navbar() {
                             About Us
                         </button>
                     </a>
-                    {/* <button className="bg-transparent rounded-sm border px-3 py-1.5 flex min-w-fit font-bold text-white border-transparent"
 
+                    {
+                        !isAuthenticated ? (
+                            <button className="bg-transparent rounded-sm border px-3 py-1.5 flex min-w-fit font-bold text-white border-transparent"
+                            onClick={() => loginWithRedirect()}
                     >
                         Login
 
-                        </button> */}
+                        </button>
 
-                    <GoogleLogin
-                        onSuccess={credentialResponse => {
-                            console.log(credentialResponse);
-                        }}
-                        onError={() => {
-                            console.log('Login Failed');
-                        }}
+                        ):(
+                            <button className="bg-transparent rounded-sm border px-3 py-1.5 flex min-w-fit font-bold text-white border-transparent"
+                            onClick={() => logout()}
+                    >
+                        LogOut
 
-                    />
+                        </button>
+                        )
+                    }{
+                        user && (
+                            <div className="flex items-center gap-x-2">
+                                <img
+                                    src={user.picture}
+                                    alt={user.name}
+                                    className="rounded-full w-10 h-10"
+                                />
+                                <h4 className="text-[1rem] text-white font-semibold">{user.name.split(' ')[0]}</h4>
+                            </div>
+                        )
+                    }
+                  
+
+
 
 
 
